@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Buzzer Control</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  </head>
+  <body>
+    <h1>Buzzer Control</h1>
+    <button id="buzzerButton">Toggle Buzzer</button>
+
+    <script>
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyClmdSDU0xx8xQ94fZ8IFxjYY6-QJeOn4I",
+        authDomain: "buzzer-72273.firebaseapp.com",
+        databaseURL:
+          "https://buzzer-72273-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "buzzer-72273",
+        storageBucket: "buzzer-72273.appspot.com",
+        messagingSenderId: "67766865138",
+        appId: "1:67766865138:web:9c2dc3046ff53270bd546b",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      var database = firebase.database();
+
+      var buzzerState = false;
+
+      document
+        .getElementById("buzzerButton")
+        .addEventListener("click", function () {
+          buzzerState = !buzzerState;
+          database.ref("/buzzerStatus").set(buzzerState ? 1 : 0);
+        });
+    </script>
+  </body>
+</html>
